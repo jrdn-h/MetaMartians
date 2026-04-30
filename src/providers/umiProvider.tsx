@@ -12,6 +12,7 @@ function UmiProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!wallet.publicKey) return;
     // When wallet.publicKey changes, update the signer in umiStore with the new wallet adapter.
+    // useWallet() returns a superset of WalletAdapter; narrow for createSignerFromWalletAdapter.
     umiStore.updateSigner(wallet as unknown as WalletAdapter);
   }, [wallet, umiStore]);
 

@@ -28,7 +28,7 @@ const transferSolToDestination = async ({
   // Use the sendAndConfirmWithWalletAdapter method to send the transaction.
   // We do not need to pass the umi stance or wallet adapter as an argument because it is
   // that is fetched fresh from the store in the `sendAndConfirmWithWalletAdapter function`.
-  const res = await sendAndConfirmWalletAdapter(tx);
+  await sendAndConfirmWalletAdapter(tx);
 };
 
 export default transferSolToDestination;

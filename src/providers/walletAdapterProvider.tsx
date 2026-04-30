@@ -1,12 +1,10 @@
 "use client";
 
-import {
-  WalletProvider
-} from "@solana/wallet-adapter-react";
+import type { Adapter } from "@solana/wallet-adapter-base";
+import { WalletProvider } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import React, { FC, useMemo } from "react";
 
-// Default styles that can be overridden by your app
 import "@solana/wallet-adapter-react-ui/styles.css";
 
 type Props = {
@@ -14,34 +12,21 @@ type Props = {
 };
 
 export const WalletAdapterProvider: FC<Props> = ({ children }) => {
-
-  const wallets = useMemo(
+  const wallets = useMemo<Adapter[]>(
     () => [
       /**
-       * Wallets that implement either of these standards will be available automatically.
+       * Wallets that implement Solana Wallet Standard or Mobile Wallet Adapter
+       * are discovered automatically.
        *
-       *   - Solana Mobile Stack Mobile Wallet Adapter Protocol
-       *     (https://github.com/solana-mobile/mobile-wallet-adapter)
-       *   - Solana Wallet Standard
-       *     (https://github.com/anza-xyz/wallet-standard)
-       *
-       * If you wish to support a wallet that supports neither of those standards,
-       * instantiate its legacy wallet adapter here. Common legacy adapters can be found
-       * in the npm package `@solana/wallet-adapter-wallets`.
+       * Add explicit legacy wallet adapters here only if needed.
        */
     ],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
   return (
-
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>
-          {/* Your app's components go here, nested within the context providers. */}
-          {children}
-        </WalletModalProvider>
-      </WalletProvider>
-
+    <WalletProvider wallets={wallets} autoConnect>
+      <WalletModalProvider>{children}</WalletModalProvider>
+    </WalletProvider>
   );
 };

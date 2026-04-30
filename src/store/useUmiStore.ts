@@ -2,7 +2,6 @@ import {
   Signer,
   Umi,
   createNoopSigner,
-  createNullSigner,
   publicKey,
   signerIdentity,
 } from "@metaplex-foundation/umi";
