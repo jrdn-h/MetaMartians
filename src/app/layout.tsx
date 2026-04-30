@@ -18,14 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <WalletAdapterProvider>
-      <UmiProvider>
-        <html lang="en">
-          <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className} suppressHydrationWarning>
+        <WalletAdapterProvider>
+          <UmiProvider>
             <ThemeProviderWrapper>{children}</ThemeProviderWrapper>
-          </body>
-        </html>
-      </UmiProvider>
-    </WalletAdapterProvider>
+          </UmiProvider>
+        </WalletAdapterProvider>
+      </body>
+    </html>
   );
 }

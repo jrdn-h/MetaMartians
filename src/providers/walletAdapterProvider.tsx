@@ -30,7 +30,6 @@ export const WalletAdapterProvider: FC<Props> = ({ children }) => {
        * in the npm package `@solana/wallet-adapter-wallets`.
        */
     ],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
